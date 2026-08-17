@@ -1,0 +1,19 @@
+# Render Blueprint 配置 - 郑州美食GIS后端
+# 文档: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: zhengzhou-food-gis-backend
+    runtime: node
+    plan: free
+    region: singapore  # 新加坡，离中国近
+    branch: main
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/statistics/overview
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
